@@ -1,7 +1,8 @@
 use rand::SeedableRng;
-use rand::prelude::*;
 use rand_distr::{Distribution, Normal};
 use rand_pcg::Pcg64; // Using PCG algorithm for good statistical properties
+use std::io;
+use std::io::prelude::*;
 use std::time::Instant;
 
 fn main() {
@@ -93,4 +94,8 @@ fn main() {
     println!("  75th percentile: ${:.2}", p75);
     println!("  95th percentile: ${:.2} (best case scenario)", p95);
     println!("\nSimulation completed in {:.2?}", duration);
+
+    // Prompt the user to press any key before exiting
+    println!("\nPress any key to exit...");
+    let _ = io::stdin().read(&mut [0u8]).unwrap(); // Read a single byte (any key press)
 }
